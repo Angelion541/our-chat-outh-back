@@ -23,7 +23,8 @@ async function signup(req, res) {
   //   avatarUrl,
   //   city,
   // });
-  const { userName } = req.body;
+  // const { userName } = req.body;
+  const  userName  = 'ROMA';
   return res.status(201).json({
 		status: 'success',
 		code: 201,
