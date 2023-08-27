@@ -4,12 +4,10 @@ const bodyParser = require('body-parser')
 const app = express()
 app.use(bodyParser.json())
 
-
-
 app.post('/getUserInfo', (req, res) => {
-	const { username } = req.body
+	const { userName } = req.body
 
-	res.json(username)
+	res.json(userName)
 })
 
 const port = 8888
