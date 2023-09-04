@@ -26,9 +26,9 @@ async function signup(req, res) {
 	// const { userName } = req.body;
 	// const  userName  = 'ROMA';
 	return res.status(201).json({
-		status: 'success',
 		code: 201,
 		data: {
+			isAuthenticated: true,
 			username,
 		},
 	})
