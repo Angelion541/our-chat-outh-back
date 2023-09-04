@@ -28,7 +28,7 @@ async function signup(req, res) {
 	return res.status(201).json({
 		status: 'success',
 		code: 201,
-		user: {
+		data: {
 			userName: name,
 		},
 	})
