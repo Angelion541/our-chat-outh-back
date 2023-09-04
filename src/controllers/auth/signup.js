@@ -2,7 +2,7 @@
 // const bcrypt = require("bcrypt");
 
 async function signup(req, res) {
-	const { name } = req.body
+	const { username } = req.body
 	// const emailToLoWerCase = email.toLowerCase();
 
 	// const userCheck = await User.findOne({ email: emailToLoWerCase });
@@ -29,7 +29,7 @@ async function signup(req, res) {
 		status: 'success',
 		code: 201,
 		data: {
-			userName: name,
+			username,
 		},
 	})
 }
