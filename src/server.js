@@ -7,6 +7,9 @@ dotenv.config()
 const app = require('./app')
 const http = require('http')
 const server = http.createServer(app)
+
+
+
 const io = new Server(server, {
 	cors: {
 		origin: '*',
@@ -41,7 +44,22 @@ io.on('connection', async socket => {
 		}
 	}
 
-	console.log('userId', userId)
 
-	console.log(`User connected ${socket.id}`)
+  socket.on("friend_request", async (data) => {
+    console.log(data.from)
+    console.log(data.to)
+    // const to = await User.findById(data.to).select("socket_id");
+    // const from = await User.findById(data.from).select("socket_id");
+
+    // emit event request received to recipient
+    // io.to(to?.socket_id).emit("new_friend_request", {
+    //   message: "New friend request received",
+    // });
+    // io.to(from?.socket_id).emit("request_sent", {
+    //   message: "Request Sent successfully!",
+    // });
+  });
+
 })
+
+
