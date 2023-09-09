@@ -18,7 +18,7 @@ mongoose.set('strictQuery', false)
 const { MONGODB_HOST_URI } = process.env
 const PORT = process.env.PORT || 8080
 
-console.log(MONGODB_HOST_URI)
+
 mongoose.connect(MONGODB_HOST_URI)
 console.log('Database connection successful')
 
