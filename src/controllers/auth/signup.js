@@ -2,7 +2,7 @@
 // const bcrypt = require("bcrypt");
 
 async function signup(req, res) {
-	const { username } = req.body
+	const { userName, userMood } = req.body
 	// const emailToLoWerCase = email.toLowerCase();
 
 	// const userCheck = await User.findOne({ email: emailToLoWerCase });
@@ -28,8 +28,8 @@ async function signup(req, res) {
 	return res.status(201).json({
 		code: 201,
 		data: {
-			isAuthenticated: true,
-			username,
+			userMood,
+			userName,
 		},
 	})
 }
