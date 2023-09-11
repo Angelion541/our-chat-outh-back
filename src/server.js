@@ -8,8 +8,6 @@ const app = require('./app')
 const http = require('http')
 const server = http.createServer(app)
 
-
-
 const io = new Server(server, {
 	cors: {
 		origin: '*',
@@ -21,7 +19,6 @@ mongoose.set('strictQuery', false)
 const { MONGODB_HOST_URI } = process.env
 const PORT = process.env.PORT || 8080
 
-
 mongoose.connect(MONGODB_HOST_URI)
 console.log('Database connection successful')
 
@@ -30,11 +27,12 @@ server.listen(PORT, () => {
 })
 
 io.on('connection', async socket => {
-
 	const userId = socket.handshake.query.user_id
+	console.log(userId)
 
 	if (userId != null && Boolean(userId)) {
 		try {
+			console.log(socket.id)
 			User.findByIdAndUpdate(userId, {
 				socket_id: socket.id,
 				status: 'Online',
@@ -44,22 +42,16 @@ io.on('connection', async socket => {
 		}
 	}
 
+	socket.on('message', async data => {
+		// eslint-disable-next-line camelcase
+		const arr = JSON.parse(data)
+		const { username, text, id, chatId } = arr
 
-  socket.on("friend_request", async (data) => {
-    console.log(data.from)
-    console.log(data.to)
-    // const to = await User.findById(data.to).select("socket_id");
-    // const from = await User.findById(data.from).select("socket_id");
+		console.log(username, text, id)
 
-    // emit event request received to recipient
-    // io.to(to?.socket_id).emit("new_friend_request", {
-    //   message: "New friend request received",
-    // });
-    // io.to(from?.socket_id).emit("request_sent", {
-    //   message: "Request Sent successfully!",
-    // });
-  });
-
+		socket.to(id).emit('new_message', {
+			conversation_id: chatId,
+			text,
+		})
+	})
 })
-
-
