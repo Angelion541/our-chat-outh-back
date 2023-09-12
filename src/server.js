@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const { Server } = require('socket.io')
-const User = require('./models/user')
+// const User = require('./models/user')
 dotenv.config()
 
 const app = require('./app')
@@ -27,16 +27,17 @@ server.listen(PORT, () => {
 })
 
 io.on('connection', async socket => {
-	const userId = socket.handshake.query.user_id
+	const userId = socket.handshake.query.id
 	console.log(userId)
 
 	if (userId != null && Boolean(userId)) {
 		try {
-			console.log(socket.id)
-			User.findByIdAndUpdate(userId, {
-				socket_id: socket.id,
-				status: 'Online',
-			})
+			console.log(userId)
+			// console.log(socket.id)
+			// User.findByIdAndUpdate(userId, {
+			// 	socket_id: socket.id,
+			// 	status: 'Online',
+			// })
 		} catch (e) {
 			console.log(e)
 		}
