@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 // const { Server } = require('socket.io')
-const ws = require('ws')
+// const ws = require('ws')
 // const User = require('./models/user')
 dotenv.config()
 
@@ -26,33 +26,33 @@ console.log('Database connection successful')
 server.listen(PORT, () => {
 	console.log(`App running on port ${PORT} ...`)
 })
-const wss = new ws.Server(
-	{
-		port: 8585,
-	},
-	() => console.log(`Server started on 8585`)
-)
+// const wss = new ws.Server(
+// 	{
+// 		port: 8585,
+// 	},
+// 	() => console.log(`Server started on 8585`)
+// )
 
-wss.on('connection', function connection(ws) {
-	ws.on('message', function (message) {
-		message = JSON.parse(message)
-		console.log(message)
-		switch (message.event) {
-			case 'message':
-				broadcastMessage(message)
-				break
-			case 'connection':
-				broadcastMessage(message)
-				break
-		}
-	})
-})
+// wss.on('connection', function connection(ws) {
+// 	ws.on('message', function (message) {
+// 		message = JSON.parse(message)
+// 		console.log(message)
+// 		switch (message.event) {
+// 			case 'message':
+// 				broadcastMessage(message)
+// 				break
+// 			case 'connection':
+// 				broadcastMessage(message)
+// 				break
+// 		}
+// 	})
+// })
 
-function broadcastMessage(message, id) {
-	wss.clients.forEach(client => {
-		client.send(JSON.stringify(message))
-	})
-}
+// function broadcastMessage(message, id) {
+// 	wss.clients.forEach(client => {
+// 		client.send(JSON.stringify(message))
+// 	})
+// }
 
 // io.on('connection', async socket => {
 // 	const userId = socket.handshake.query.id
