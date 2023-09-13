@@ -15,10 +15,12 @@ app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Headers', '*')
 	next()
 })
+
 app.use(cors({
 	origin: '*',
 	methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }))
+
 app.use(express.json())
 
 app.use('/auth', authRouter)
