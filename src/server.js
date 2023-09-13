@@ -28,7 +28,8 @@ server.listen(PORT, () => {
 
 io.on('connection', async socket => {
 	const userId = socket.handshake.query.id
-	console.log(userId)
+
+	console.log(`User connected ${socket.id}`)
 
 	if (userId != null && Boolean(userId)) {
 		try {
@@ -44,15 +45,7 @@ io.on('connection', async socket => {
 	}
 
 	socket.on('message', async data => {
-		// eslint-disable-next-line camelcase
-		const arr = JSON.parse(data)
-		const { username, text, id, chatId } = arr
-
-		console.log(username, text, id)
-
-		socket.to(id).emit('new_message', {
-			conversation_id: chatId,
-			text,
-		})
+		console.log(data)
+		io.send(data)
 	})
 })
