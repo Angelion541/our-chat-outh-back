@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const messageSchema = new mongoose.Schema(
   {
+    name: String,
     chatId: String,
     senderId: String,
     text: String,
@@ -11,6 +12,6 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
-const Message = mongoose.model("Message", messageSchema);
+const Message = mongoose.model("room", messageSchema);
 
 module.exports = Message;
