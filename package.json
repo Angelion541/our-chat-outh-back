@@ -3,10 +3,9 @@
   "version": "0.0.1",
   "type": "module",
   "private": true,
-  "main": "src/server2.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node main",
-    "start:dev": "cross-env NODE_ENV=development nodemon main",
+    "start": "cross-env NODE_ENV=production node src/server2.js",
+    "start:dev": "cross-env NODE_ENV=development src/server2.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },
