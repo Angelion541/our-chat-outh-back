@@ -13,7 +13,7 @@ server.use(authRouter);
 
 mongoose.set('strictQuery', false)
 
-mongoose.connect(MONGODB_HOST_URI)
+mongoose.connect(MONGODB_HOST_URI, ()=>console.log('DB connected'));
 
 server.get('/', (req, res, next) => {
   res.send('Hello');
