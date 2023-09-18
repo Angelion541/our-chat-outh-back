@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=production node src/server2.js",
-    "start:dev": "cross-env NODE_ENV=development src/server2.js",
+    "start": "node src/server2.js --omit=dev",
+    "start:dev": "src/server2.js --omit=dev",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },
