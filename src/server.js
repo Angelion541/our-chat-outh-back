@@ -1,13 +1,11 @@
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-// const { Server } = require('socket.io')
-// const ws = require('ws')
-// const User = require('./models/user')
-dotenv.config()
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import express from 'express';
 
-const app = require('./app')
-const http = require('http')
-const server = http.createServer(app)
+const { MONGODB_HOST_URI, SEVER_PORT } = process.env;
+const PORT = SEVER_PORT || 8080;
+
+const server = express();
 
 // const io = new Server(server, {
 // 	cors: {
@@ -17,14 +15,16 @@ const server = http.createServer(app)
 // })
 
 mongoose.set('strictQuery', false)
-const { MONGODB_HOST_URI } = process.env
-const PORT = process.env.PORT || 8080
 
 mongoose.connect(MONGODB_HOST_URI)
 console.log('Database connection successful')
 
+server.get('/', (req, res, next) => {
+  res.send('Hello');
+});
+
 server.listen(PORT, () => {
-	console.log(`App running on port ${PORT} ...`)
+	console.log(`App running on http://localhost:${PORT}`)
 })
 // const wss = new ws.Server(
 // 	{

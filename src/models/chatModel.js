@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const chatSchema = new mongoose.Schema(
+const chatSchema = new Schema(
   {
     members: Array,
   },
@@ -9,6 +9,6 @@ const chatSchema = new mongoose.Schema(
   }
 );
 
-const chatModel = mongoose.model("Chat", chatSchema);
+const chatModel = model("Chat", chatSchema);
 
 module.exports = chatModel;
